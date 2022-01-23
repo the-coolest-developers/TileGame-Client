@@ -1,0 +1,19 @@
+include:
+  - project: "the-coolest-developers/devops/shared-pilelines"
+    ref: develop
+    file: "shared.yml"
+
+variables:
+  SOLUTION_PATH: "${CI_PROJECT_DIR}/Source/${PROJECT_NAME}/${PROJECT_NAME}.sln"
+
+stages:
+  - build_scan_base
+  - pack_nugets
+
+build_source_code:
+  stage: build_scan_base
+  extends: .build
+
+pack_code:
+  stage: pack_nugets
+  extends: .pack
